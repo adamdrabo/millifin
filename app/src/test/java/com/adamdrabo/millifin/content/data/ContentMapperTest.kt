@@ -7,7 +7,7 @@ import java.io.File
 
 class ContentMapperTest {
 
-    private val json = Json { ignoreUnknownKeys = true }
+    private val json = Json
 
     private val dto: ContentDto =
         json.decodeFromString(ContentDto.serializer(), File("src/main/assets/content.json").readText())
