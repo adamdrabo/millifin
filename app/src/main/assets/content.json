@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "money-basics",
+      "order": 1,
+      "title": "Qu'est-ce que l'argent ?",
+      "readingMinutes": 4,
+      "isSensitive": false,
+      "sections": [
+        {
+          "title": "Un moyen d'échange",
+          "body": "Texte de test, à remplacer en semaine 2."
+        }
+      ],
+      "keyTakeaway": "L'argent sert à échanger, pas à être vendu.",
+      "sources": [
+        {
+          "label": "Source de test",
+          "url": "https://example.com"
+        }
+      ],
+      "quiz": [
+        {
+          "id": "money-basics-q1",
+          "question": "À quoi sert l'argent ?",
+          "choices": ["À échanger", "À être vendu", "À rien"],
+          "correctIndex": 0,
+          "explanation": "L'argent est un moyen d'échange."
+        }
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Riba",
+      "definition": "Définition de test."
+    }
+  ]
+}
