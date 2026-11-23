@@ -10,6 +10,7 @@ data class LessonDto(
     val readingMinutes: Int,
     val isSensitive: Boolean,
     val keyTakeaway: String,
+    val sections: List<SectionDto>,
     val sources: List<SourceDto>,
     val quiz: List<QuestionDto>
 )
