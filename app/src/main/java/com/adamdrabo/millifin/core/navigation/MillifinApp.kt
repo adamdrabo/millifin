@@ -60,7 +60,7 @@ fun MillifinApp(navController: NavHostController = rememberNavController()) {
             composable<QuizRoute> {
                 QuizScreen(
                     onBack = { navController.popBackStack() },
-                    onBackToLessons = { navController.popBackStack(LessonsRoute, inclusive = false) }
+                    onBackToLessons = { navController.backToLessons() }
                 )
             }
             composable<GlossaryRoute> { GlossaryScreen() }
@@ -114,5 +114,13 @@ private fun MillifinBottomBar(navController: NavHostController) {
                 )
             )
         }
+    }
+}
+
+private fun NavHostController.backToLessons() {
+    if (popBackStack(LessonsRoute, inclusive = false)) return
+    navigate(LessonsRoute) {
+        popUpTo(graph.findStartDestination().id) { saveState = true }
+        launchSingleTop = true
     }
 }
