@@ -44,7 +44,9 @@ fun MillifinApp(navController: NavHostController = rememberNavController()) {
             startDestination = HomeRoute,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable<HomeRoute> { HomeScreen() }
+            composable<HomeRoute> {
+                HomeScreen(onOpenLesson = { lessonId -> navController.navigate(LessonRoute(lessonId)) })
+            }
             composable<LessonsRoute> {
                 LessonsScreen(onOpenLesson = { lessonId -> navController.navigate(LessonRoute(lessonId)) })
             }

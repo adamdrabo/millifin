@@ -36,4 +36,11 @@
     <string name="quiz_failed" formatted="false">Il faut 60 % de bonnes réponses pour terminer la leçon.</string>
     <string name="quiz_retry">Recommencer</string>
     <string name="quiz_back_to_lessons">Retour aux leçons</string>
+    <string name="glossary_search">Rechercher un terme</string>
+    <string name="glossary_empty">Aucun terme ne correspond à « %1$s ».</string>
+    <string name="home_progress_title">Ta progression</string>
+    <string name="home_progress_count">%1$d leçon(s) terminée(s) sur %2$d</string>
+    <string name="home_continue">Continuer : %1$s</string>
+    <string name="home_start">Commencer : %1$s</string>
+    <string name="home_all_done">Tu as terminé toutes les leçons. Bravo !</string>
 </resources>
