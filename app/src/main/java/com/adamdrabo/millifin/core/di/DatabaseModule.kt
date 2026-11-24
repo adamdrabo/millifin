@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.adamdrabo.millifin.content.data.ContentDao
 import com.adamdrabo.millifin.core.database.MillifinDatabase
+import com.adamdrabo.millifin.progress.data.ProgressDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,4 +24,8 @@ object DatabaseModule {
     @Provides
     fun provideContentDao(database: MillifinDatabase): ContentDao =
         database.contentDao()
+
+    @Provides
+    fun provideProgressDao(database: MillifinDatabase): ProgressDao =
+        database.progressDao()
 }

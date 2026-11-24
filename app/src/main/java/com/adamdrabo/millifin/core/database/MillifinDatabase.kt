@@ -10,6 +10,8 @@ import com.adamdrabo.millifin.content.data.LessonEntity
 import com.adamdrabo.millifin.content.data.QuestionEntity
 import com.adamdrabo.millifin.content.data.SectionEntity
 import com.adamdrabo.millifin.content.data.SourceEntity
+import com.adamdrabo.millifin.progress.data.LessonProgressEntity
+import com.adamdrabo.millifin.progress.data.ProgressDao
 
 @Database(
     entities = [
@@ -17,7 +19,8 @@ import com.adamdrabo.millifin.content.data.SourceEntity
         SectionEntity::class,
         SourceEntity::class,
         QuestionEntity::class,
-        GlossaryTermEntity::class
+        GlossaryTermEntity::class,
+        LessonProgressEntity::class
     ],
     version = 1,
     exportSchema = true
@@ -25,4 +28,5 @@ import com.adamdrabo.millifin.content.data.SourceEntity
 @TypeConverters(ContentConverters::class)
 abstract class MillifinDatabase : RoomDatabase() {
     abstract fun contentDao(): ContentDao
+    abstract fun progressDao(): ProgressDao
 }
