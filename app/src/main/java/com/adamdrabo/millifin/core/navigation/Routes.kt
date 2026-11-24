@@ -19,3 +19,6 @@ data class LessonRoute(val lessonId: String)
 
 @Serializable
 data class QuizRoute(val lessonId: String)
+
+@Serializable
+data class TransactionEditRoute(val transactionId: Long = 0L)

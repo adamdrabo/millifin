@@ -2,6 +2,7 @@ package com.adamdrabo.millifin.core.di
 
 import android.content.Context
 import androidx.room.Room
+import com.adamdrabo.millifin.budget.data.TransactionDao
 import com.adamdrabo.millifin.content.data.ContentDao
 import com.adamdrabo.millifin.core.database.MillifinDatabase
 import com.adamdrabo.millifin.progress.data.ProgressDao
@@ -28,4 +29,8 @@ object DatabaseModule {
     @Provides
     fun provideProgressDao(database: MillifinDatabase): ProgressDao =
         database.progressDao()
+
+    @Provides
+    fun provideTransactionDao(database: MillifinDatabase): TransactionDao =
+        database.transactionDao()
 }

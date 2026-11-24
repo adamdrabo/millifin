@@ -22,6 +22,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.adamdrabo.millifin.budget.ui.BudgetScreen
+import com.adamdrabo.millifin.budget.ui.TransactionEditScreen
 import com.adamdrabo.millifin.content.ui.LessonScreen
 import com.adamdrabo.millifin.content.ui.LessonsScreen
 import com.adamdrabo.millifin.content.ui.QuizScreen
@@ -63,7 +64,15 @@ fun MillifinApp(navController: NavHostController = rememberNavController()) {
                 )
             }
             composable<GlossaryRoute> { GlossaryScreen() }
-            composable<BudgetRoute> { BudgetScreen() }
+            composable<BudgetRoute> {
+                BudgetScreen(
+                    onAdd = { navController.navigate(TransactionEditRoute()) },
+                    onOpenTransaction = { id -> navController.navigate(TransactionEditRoute(id)) }
+                )
+            }
+            composable<TransactionEditRoute> {
+                TransactionEditScreen(onDone = { navController.popBackStack() })
+            }
         }
     }
 }
