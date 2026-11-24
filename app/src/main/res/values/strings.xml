@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Millifin</string>
+    <string name="tab_home">Accueil</string>
+    <string name="tab_lessons">Leçons</string>
+    <string name="tab_glossary">Glossaire</string>
+    <string name="tab_budget">Budget</string>
+    <string name="home_title">Bienvenue</string>
+    <string name="home_subtitle">Apprends comment l\'argent fonctionne, une leçon à la fois.</string>
+    <string name="lessons_title">Leçons</string>
+    <string name="lessons_loading">Chargement des leçons…</string>
+    <string name="lesson_reading_time">%1$d min de lecture</string>
+    <string name="glossary_title">Glossaire</string>
+    <string name="budget_title">Budget</string>
+    <string name="coming_soon">Bientôt disponible.</string>
 </resources>

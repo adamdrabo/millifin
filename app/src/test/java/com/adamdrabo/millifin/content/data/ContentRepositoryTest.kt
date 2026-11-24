@@ -105,22 +105,4 @@ class ContentRepositoryTest {
         ),
         glossary = listOf(GlossaryTermDto("Riba", "Definition"))
     )
-
-    private class FakeVersionStore : ContentVersionStore {
-        private var version = 0
-        override suspend fun get(): Int = version
-        override suspend fun set(version: Int) {
-            this.version = version
-        }
-    }
-
-    private class FakeContentApi : ContentApi {
-        var result: () -> ContentDto = { throw IOException("not configured") }
-        override suspend fun getContent(): ContentDto = result()
-    }
-
-    private class FakeSeedReader : ContentSeedReader {
-        lateinit var content: ContentDto
-        override suspend fun read(): ContentDto = content
-    }
 }
