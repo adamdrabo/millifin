@@ -1,6 +1,7 @@
 package com.adamdrabo.millifin.core.di
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import androidx.room.Room
 import com.adamdrabo.millifin.budget.data.TransactionDao
 import com.adamdrabo.millifin.content.data.ContentDao
@@ -19,8 +20,14 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext context: Context): MillifinDatabase =
-        Room.databaseBuilder(context, MillifinDatabase::class.java, "millifin.db").build()
+    fun provideDatabase(@ApplicationContext context: Context): MillifinDatabase {
+        val builder = Room.databaseBuilder(context, MillifinDatabase::class.java, "millifin.db")
+        val isDebuggable = context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+        if (isDebuggable) {
+            builder.fallbackToDestructiveMigration(dropAllTables = true)
+        }
+        return builder.build()
+    }
 
     @Provides
     fun provideContentDao(database: MillifinDatabase): ContentDao =

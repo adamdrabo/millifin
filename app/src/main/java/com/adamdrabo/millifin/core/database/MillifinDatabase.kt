@@ -25,7 +25,7 @@ import com.adamdrabo.millifin.progress.data.ProgressDao
         LessonProgressEntity::class,
         TransactionEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 @TypeConverters(ContentConverters::class)
