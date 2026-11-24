@@ -23,12 +23,13 @@ class LessonsViewModelTest {
 
     private val dao = FakeContentDao()
 
-    private val viewModel = LessonsViewModel(
+    private fun createViewModel() = LessonsViewModel(
         ContentRepository(dao, FakeContentApi(), FakeSeedReader(), FakeVersionStore())
     )
 
     @Test
     fun stateIsLoadingWhileNoLessonIsStored() = runTest {
+        val viewModel = createViewModel()
         backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) { viewModel.uiState.collect {} }
 
         assertEquals(LessonsUiState.Loading, viewModel.uiState.value)
@@ -36,6 +37,7 @@ class LessonsViewModelTest {
 
     @Test
     fun storedLessonsAreExposedAsReady() = runTest {
+        val viewModel = createViewModel()
         backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) { viewModel.uiState.collect {} }
 
         dao.lessons.value = listOf(
