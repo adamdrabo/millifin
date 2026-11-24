@@ -1,0 +1,30 @@
+package com.adamdrabo.millifin.core.theme
+
+import androidx.compose.ui.graphics.Color
+
+val LightBackground = Color(0xFFF7F2E8)
+val LightSurface = Color(0xFFFFFFFF)
+val LightPrimary = Color(0xFF8A6418)
+val LightGold = Color(0xFFC9A24B)
+val LightGoldSoft = Color(0xFFF1E4C4)
+val LightText = Color(0xFF2B2620)
+val LightMuted = Color(0xFF6E655A)
+val LightBorder = Color(0xFFE6DCC8)
+val LightSuccess = Color(0xFF3E7D5A)
+val LightSuccessSoft = Color(0xFFE3F0E8)
+val LightError = Color(0xFFB3473A)
+val LightErrorSoft = Color(0xFFF6E1DE)
+val LightOnPrimary = Color(0xFFFFFFFF)
+
+val DarkBackground = Color(0xFF1A1712)
+val DarkSurface = Color(0xFF26221B)
+val DarkPrimary = Color(0xFFD4A94F)
+val DarkGoldSoft = Color(0xFF3A3122)
+val DarkText = Color(0xFFF2ECE0)
+val DarkMuted = Color(0xFFB3A894)
+val DarkBorder = Color(0xFF3A342A)
+val DarkSuccess = Color(0xFF7BB894)
+val DarkSuccessSoft = Color(0xFF22332A)
+val DarkError = Color(0xFFE08A7E)
+val DarkErrorSoft = Color(0xFF3A2522)
+val DarkOnPrimary = Color(0xFF1A1712)
