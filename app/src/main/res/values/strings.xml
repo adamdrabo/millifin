@@ -12,4 +12,28 @@
     <string name="glossary_title">Glossaire</string>
     <string name="budget_title">Budget</string>
     <string name="coming_soon">Bientôt disponible.</string>
+    <string name="status_to_do">À faire</string>
+    <string name="status_in_progress">En cours</string>
+    <string name="status_done">Terminée</string>
+    <string name="back">Retour</string>
+    <string name="lesson_not_found">Cette leçon est introuvable.</string>
+    <string name="lesson_page">%1$d / %2$d</string>
+    <string name="lesson_next">Suivant</string>
+    <string name="lesson_previous">Précédent</string>
+    <string name="lesson_key_takeaway">À retenir</string>
+    <string name="lesson_sources">Sources</string>
+    <string name="lesson_start_quiz">Faire le quiz</string>
+    <string name="disclaimer">Contenu éducatif, pas un avis religieux ni un conseil financier.</string>
+    <string name="quiz_title">Quiz</string>
+    <string name="quiz_question_number">Question %1$d sur %2$d</string>
+    <string name="quiz_correct">Bonne réponse</string>
+    <string name="quiz_wrong">Mauvaise réponse</string>
+    <string name="quiz_next_question">Question suivante</string>
+    <string name="quiz_see_result">Voir le résultat</string>
+    <string name="quiz_no_questions">Cette leçon n\'a pas encore de quiz.</string>
+    <string name="quiz_score">%1$d bonnes réponses sur %2$d</string>
+    <string name="quiz_passed">Leçon terminée. Bravo !</string>
+    <string name="quiz_failed" formatted="false">Il faut 60 % de bonnes réponses pour terminer la leçon.</string>
+    <string name="quiz_retry">Recommencer</string>
+    <string name="quiz_back_to_lessons">Retour aux leçons</string>
 </resources>

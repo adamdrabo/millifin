@@ -22,15 +22,22 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.adamdrabo.millifin.budget.ui.BudgetScreen
+import com.adamdrabo.millifin.content.ui.LessonScreen
 import com.adamdrabo.millifin.content.ui.LessonsScreen
+import com.adamdrabo.millifin.content.ui.QuizScreen
 import com.adamdrabo.millifin.glossary.ui.GlossaryScreen
 import com.adamdrabo.millifin.home.HomeScreen
 
 @Composable
 fun MillifinApp(navController: NavHostController = rememberNavController()) {
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = backStackEntry?.destination
+    val showBottomBar = TopLevelDestination.entries.any { destination ->
+        currentDestination?.hierarchy?.any { it.hasRoute(destination.route::class) } == true
+    }
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
-        bottomBar = { MillifinBottomBar(navController) }
+        bottomBar = { if (showBottomBar) MillifinBottomBar(navController) }
     ) { innerPadding ->
         NavHost(
             navController = navController,
@@ -38,7 +45,21 @@ fun MillifinApp(navController: NavHostController = rememberNavController()) {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable<HomeRoute> { HomeScreen() }
-            composable<LessonsRoute> { LessonsScreen() }
+            composable<LessonsRoute> {
+                LessonsScreen(onOpenLesson = { lessonId -> navController.navigate(LessonRoute(lessonId)) })
+            }
+            composable<LessonRoute> {
+                LessonScreen(
+                    onBack = { navController.popBackStack() },
+                    onStartQuiz = { lessonId -> navController.navigate(QuizRoute(lessonId)) }
+                )
+            }
+            composable<QuizRoute> {
+                QuizScreen(
+                    onBack = { navController.popBackStack() },
+                    onBackToLessons = { navController.popBackStack(LessonsRoute, inclusive = false) }
+                )
+            }
             composable<GlossaryRoute> { GlossaryScreen() }
             composable<BudgetRoute> { BudgetScreen() }
         }

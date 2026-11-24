@@ -32,16 +32,25 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.adamdrabo.millifin.R
 import com.adamdrabo.millifin.content.model.Lesson
+import com.adamdrabo.millifin.core.theme.LocalAnswerColors
 import com.adamdrabo.millifin.core.theme.MillifinTheme
+import com.adamdrabo.millifin.progress.model.LessonStatus
 
 @Composable
-fun LessonsScreen(viewModel: LessonsViewModel = hiltViewModel()) {
+fun LessonsScreen(
+    onOpenLesson: (String) -> Unit,
+    viewModel: LessonsViewModel = hiltViewModel()
+) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    LessonsContent(uiState = uiState)
+    LessonsContent(uiState = uiState, onOpenLesson = onOpenLesson)
 }
 
 @Composable
-fun LessonsContent(uiState: LessonsUiState, modifier: Modifier = Modifier) {
+fun LessonsContent(
+    uiState: LessonsUiState,
+    onOpenLesson: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     when (uiState) {
         LessonsUiState.Loading -> Box(
             modifier = modifier.fillMaxSize(),
@@ -64,16 +73,18 @@ fun LessonsContent(uiState: LessonsUiState, modifier: Modifier = Modifier) {
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
             }
-            items(uiState.lessons, key = { it.id }) { lesson ->
-                LessonCard(lesson = lesson)
+            items(uiState.items, key = { it.lesson.id }) { item ->
+                LessonCard(item = item, onClick = { onOpenLesson(item.lesson.id) })
             }
         }
     }
 }
 
 @Composable
-private fun LessonCard(lesson: Lesson) {
+private fun LessonCard(item: LessonItem, onClick: () -> Unit) {
+    val lesson = item.lesson
     Surface(
+        onClick = onClick,
         shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colorScheme.surface,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
@@ -98,7 +109,7 @@ private fun LessonCard(lesson: Lesson) {
                 }
             }
             Spacer(modifier = Modifier.width(16.dp))
-            Column {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = lesson.title,
                     style = MaterialTheme.typography.titleMedium,
@@ -111,7 +122,39 @@ private fun LessonCard(lesson: Lesson) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
+            Spacer(modifier = Modifier.width(8.dp))
+            StatusChip(status = item.status)
         }
+    }
+}
+
+@Composable
+private fun StatusChip(status: LessonStatus) {
+    val answerColors = LocalAnswerColors.current
+    val (label, background, content) = when (status) {
+        LessonStatus.TO_DO -> Triple(
+            R.string.status_to_do,
+            MaterialTheme.colorScheme.background,
+            MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        LessonStatus.IN_PROGRESS -> Triple(
+            R.string.status_in_progress,
+            MaterialTheme.colorScheme.secondaryContainer,
+            MaterialTheme.colorScheme.primary
+        )
+        LessonStatus.DONE -> Triple(
+            R.string.status_done,
+            answerColors.successContainer,
+            answerColors.success
+        )
+    }
+    Surface(shape = RoundedCornerShape(50), color = background) {
+        Text(
+            text = stringResource(label),
+            style = MaterialTheme.typography.labelMedium,
+            color = content,
+            modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+        )
     }
 }
 
@@ -122,10 +165,12 @@ private fun LessonsContentPreview() {
         LessonsContent(
             uiState = LessonsUiState.Ready(
                 listOf(
-                    Lesson("money-basics", 1, "Qu'est-ce que l'argent ?", 4, false),
-                    Lesson("inflation", 2, "L'inflation", 5, false)
+                    LessonItem(Lesson("money-basics", 1, "Qu'est-ce que l'argent ?", 4, false), LessonStatus.DONE),
+                    LessonItem(Lesson("inflation", 2, "L'inflation", 5, false), LessonStatus.IN_PROGRESS),
+                    LessonItem(Lesson("riba", 3, "Le riba", 5, true), LessonStatus.TO_DO)
                 )
-            )
+            ),
+            onOpenLesson = {}
         )
     }
 }
