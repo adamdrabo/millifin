@@ -8,7 +8,7 @@ import java.io.File
 
 class ContentDtoTest {
 
-    private val json = Json { ignoreUnknownKeys = true }
+    private val json = Json
 
     private fun loadSeed(): ContentDto {
         val text = File("src/main/assets/content.json").readText()
